@@ -2,13 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
+	"github.com/sagarciaescobar/integrador-final-backend-III/config"
 )
 
 func main() {
-	if err := godotenv.Load(".env"); err != nil {
-		panic("Error loading .env file:" + err.Error())
-	}
+	Config := config.Get()
+
 	r := gin.Default()
-	r.Run(":8080")
+
+	r.Run(Config.Application.Port)
 }
