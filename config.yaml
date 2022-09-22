@@ -2,8 +2,7 @@ application:
   port: :8080
   db:
     mysql:
-      host: mysql
-      database: golang-stater
+      host: localhost
       port: 3306
       user: root
-      password: root
+      password: 1234

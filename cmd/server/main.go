@@ -7,8 +7,7 @@ import (
 
 func main() {
 	Config := config.Get()
-
+	config.Init()
 	r := gin.Default()
-
 	r.Run(Config.Application.Port)
 }
