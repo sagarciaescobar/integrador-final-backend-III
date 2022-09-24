@@ -36,6 +36,5 @@ func Get() *config {
 	if err := d.Decode(&Config); err != nil {
 		panic("error[config]: can't decode config file")
 	}
-
 	return Config
 }
