@@ -39,7 +39,7 @@ func addDentistRoutes(rg *gin.RouterGroup) {
 	dentist.POST("/", han.DAdd())
 	dentist.PUT("/", han.DUpdate())
 	dentist.DELETE("/:id", han.DDelete())
-	dentist.PATCH("/address", han.DChangeRegistrationIdById())
+	dentist.PATCH("/registration-id", han.DChangeRegistrationIdById())
 }
 
 func addAppointmentRoutes(rg *gin.RouterGroup) {

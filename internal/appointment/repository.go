@@ -56,10 +56,11 @@ func (r repository) GetById(id int) (domain.Appointment, error) {
 	if selDb.Next() {
 		var id, idPatient, idDentist int
 		var date, description string
-		selDb.Scan(&id, &idPatient, &idDentist, &date, &description)
+		selDb.Scan(&id, &date, &idPatient, &idDentist, &description)
 		a.Id = id
 		a.IdPatient = idPatient
 		a.IdDentist = idDentist
+		a.Description = description
 		data, err := utils.StringToDate(date)
 		if err != nil {
 			return domain.Appointment{}, err

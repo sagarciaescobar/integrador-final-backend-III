@@ -15,6 +15,8 @@ func Mapper(m map[string]string) (domain.Appointment, error) {
 		return domain.Appointment{}, errors.New("Appointment error - id_dentist must be defined")
 	} else if m["time"] == "" {
 		return domain.Appointment{}, errors.New("Appointment error - time must be defined")
+	} else if m["description"] == "" {
+		return domain.Appointment{}, errors.New("Appointment error - description must be defined")
 	}
 	var a domain.Appointment
 	if m["id"] != "" {
@@ -34,7 +36,7 @@ func Mapper(m map[string]string) (domain.Appointment, error) {
 	}
 	a.IdPatient = idPatient
 	a.IdDentist = idDentist
-
+	a.Description = m["description"]
 	data, err := utils.StringToDate(m["time"])
 	if err != nil {
 		return domain.Appointment{}, err
