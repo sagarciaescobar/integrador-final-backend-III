@@ -15,7 +15,7 @@ func router(r *gin.Engine, version int) *gin.Engine {
 		web.Success(c, 200, "ping")
 	})
 	addPatientRoutes(v1)
-	addPatientRoutes(v1)
+	addDentistRoutes(v1)
 	return r
 }
 
@@ -23,9 +23,20 @@ func addPatientRoutes(rg *gin.RouterGroup) {
 	patient := rg.Group("/patient")
 	han := handler.NewPatientHandler()
 
-	patient.GET("/:id", han.GetByID())
-	patient.POST("/", han.Add())
-	patient.PUT("/", han.Update())
-	patient.DELETE("/:id", han.Delete())
-	patient.PATCH("/address", han.ChangeAddresById())
+	patient.GET("/:id", han.PGetByID())
+	patient.POST("/", han.PAdd())
+	patient.PUT("/", han.PUpdate())
+	patient.DELETE("/:id", han.PDelete())
+	patient.PATCH("/address", han.PChangeAddresById())
+}
+
+func addDentistRoutes(rg *gin.RouterGroup) {
+	dentist := rg.Group("/dentist")
+	han := handler.NewDentistHandler()
+
+	dentist.GET("/:id", han.DGetByID())
+	dentist.POST("/", han.DAdd())
+	dentist.PUT("/", han.DUpdate())
+	dentist.DELETE("/:id", han.DDelete())
+	dentist.PATCH("/address", han.DChangeAddresById())
 }

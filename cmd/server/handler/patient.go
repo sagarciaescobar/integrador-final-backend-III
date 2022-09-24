@@ -17,7 +17,7 @@ func NewPatientHandler() *patientHandler {
 	return &patientHandler{s: patient.NewService()}
 }
 
-func (h patientHandler) GetByID() gin.HandlerFunc {
+func (h patientHandler) PGetByID() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		idParam := c.Param("id")
 		id, err := strconv.Atoi(idParam)
@@ -35,7 +35,7 @@ func (h patientHandler) GetByID() gin.HandlerFunc {
 	}
 }
 
-func (h patientHandler) Add() gin.HandlerFunc {
+func (h patientHandler) PAdd() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var m map[string]string
 		if err := c.BindJSON(&m); err != nil {
@@ -57,7 +57,7 @@ func (h patientHandler) Add() gin.HandlerFunc {
 	}
 }
 
-func (h patientHandler) Update() gin.HandlerFunc {
+func (h patientHandler) PUpdate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var m map[string]string
 		if err := c.BindJSON(&m); err != nil {
@@ -83,7 +83,7 @@ func (h patientHandler) Update() gin.HandlerFunc {
 	}
 }
 
-func (h patientHandler) ChangeAddresById() gin.HandlerFunc {
+func (h patientHandler) PChangeAddresById() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var m map[string]string
 		if err := c.BindJSON(&m); err != nil {
@@ -113,7 +113,7 @@ func (h patientHandler) ChangeAddresById() gin.HandlerFunc {
 	}
 }
 
-func (h patientHandler) Delete() gin.HandlerFunc {
+func (h patientHandler) PDelete() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		idParam := c.Param("id")
 		id, err := strconv.Atoi(idParam)
