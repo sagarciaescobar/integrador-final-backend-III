@@ -16,6 +16,7 @@ func router(r *gin.Engine, version int) *gin.Engine {
 	})
 	addPatientRoutes(v1)
 	addDentistRoutes(v1)
+	addAppointmentRoutes(v1)
 	return r
 }
 
@@ -39,4 +40,15 @@ func addDentistRoutes(rg *gin.RouterGroup) {
 	dentist.PUT("/", han.DUpdate())
 	dentist.DELETE("/:id", han.DDelete())
 	dentist.PATCH("/address", han.DChangeAddresById())
+}
+
+func addAppointmentRoutes(rg *gin.RouterGroup) {
+	appointment := rg.Group("/appointment")
+	han := handler.NewAppointmentHandler()
+
+	appointment.GET("/:id", han.AGetByID())
+	appointment.POST("/", han.AAdd())
+	appointment.PUT("/", han.AUpdate())
+	appointment.DELETE("/:id", han.ADelete())
+	appointment.PATCH("/time", han.AChangeTimeById())
 }
