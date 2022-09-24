@@ -42,12 +42,7 @@ func (h dentistHandler) DAdd() gin.HandlerFunc {
 			web.Failure(c, 400, errors.New("invalid id"))
 			return
 		}
-		d, err := dentist.Mapper(m)
-		if err != nil {
-			web.Failure(c, 400, err)
-			return
-		}
-		res, err := h.s.Create(d)
+		res, err := h.s.Create(m)
 		if err != nil {
 			web.Failure(c, 400, err)
 			return
@@ -64,16 +59,7 @@ func (h dentistHandler) DUpdate() gin.HandlerFunc {
 			web.Failure(c, 400, errors.New("invalid id"))
 			return
 		}
-		if m["id"] == "" {
-			web.Failure(c, 400, errors.New("id must be defined"))
-			return
-		}
-		d, err := dentist.Mapper(m)
-		if err != nil {
-			web.Failure(c, 400, err)
-			return
-		}
-		res, err := h.s.UpdateById(d)
+		res, err := h.s.UpdateById(m)
 		if err != nil {
 			web.Failure(c, 400, err)
 			return
@@ -83,27 +69,14 @@ func (h dentistHandler) DUpdate() gin.HandlerFunc {
 	}
 }
 
-func (h dentistHandler) DChangeAddresById() gin.HandlerFunc {
+func (h dentistHandler) DChangeRegistrationIdById() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var m map[string]string
 		if err := c.BindJSON(&m); err != nil {
-			web.Failure(c, 400, errors.New("invalid id"))
+			web.Failure(c, 400, errors.New("invalid request"))
 			return
 		}
-		if m["id"] == "" {
-			web.Failure(c, 400, errors.New("id must be defined"))
-			return
-		}
-		if m["address"] == "" {
-			web.Failure(c, 400, errors.New("address must be defined"))
-			return
-		}
-		id, err := strconv.Atoi(m["id"])
-		if err != nil {
-			web.Failure(c, 400, errors.New("invalid id"))
-			return
-		}
-		err = h.s.ChangeRegistrationIdById(id, m["address"])
+		err := h.s.ChangeRegistrationIdById(m)
 		if err != nil {
 			web.Failure(c, 400, err)
 			return

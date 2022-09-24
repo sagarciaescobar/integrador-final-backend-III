@@ -42,12 +42,7 @@ func (h patientHandler) PAdd() gin.HandlerFunc {
 			web.Failure(c, 400, errors.New("invalid id"))
 			return
 		}
-		p, err := patient.Mapper(m)
-		if err != nil {
-			web.Failure(c, 400, err)
-			return
-		}
-		res, err := h.s.Create(p)
+		res, err := h.s.Create(m)
 		if err != nil {
 			web.Failure(c, 400, err)
 			return
@@ -64,16 +59,7 @@ func (h patientHandler) PUpdate() gin.HandlerFunc {
 			web.Failure(c, 400, errors.New("invalid id"))
 			return
 		}
-		if m["id"] == "" {
-			web.Failure(c, 400, errors.New("id must be defined"))
-			return
-		}
-		p, err := patient.Mapper(m)
-		if err != nil {
-			web.Failure(c, 400, err)
-			return
-		}
-		res, err := h.s.UpdateById(p)
+		res, err := h.s.UpdateById(m)
 		if err != nil {
 			web.Failure(c, 400, err)
 			return
@@ -90,20 +76,7 @@ func (h patientHandler) PChangeAddresById() gin.HandlerFunc {
 			web.Failure(c, 400, errors.New("invalid id"))
 			return
 		}
-		if m["id"] == "" {
-			web.Failure(c, 400, errors.New("id must be defined"))
-			return
-		}
-		if m["address"] == "" {
-			web.Failure(c, 400, errors.New("address must be defined"))
-			return
-		}
-		id, err := strconv.Atoi(m["id"])
-		if err != nil {
-			web.Failure(c, 400, errors.New("invalid id"))
-			return
-		}
-		err = h.s.ChangeAddresById(id, m["address"])
+		err := h.s.ChangeAddresById(m)
 		if err != nil {
 			web.Failure(c, 400, err)
 			return
