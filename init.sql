@@ -29,13 +29,14 @@ CREATE TABLE `appointment` (
   `time` datetime DEFAULT NULL,
   `id_patient` int DEFAULT NULL,
   `id_dentist` int DEFAULT NULL,
+  `description` mediumtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `id_patient_idx` (`id_patient`),
   KEY `id_dentist_idx` (`id_dentist`),
   CONSTRAINT `id_dentist` FOREIGN KEY (`id_dentist`) REFERENCES `dentist` (`id`),
   CONSTRAINT `id_patient` FOREIGN KEY (`id_patient`) REFERENCES `patient` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +45,7 @@ CREATE TABLE `appointment` (
 
 LOCK TABLES `appointment` WRITE;
 /*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+INSERT INTO `appointment` VALUES (1,'2022-10-17 02:54:16',86,1,'Arthropathy associated with other viral diseases, multiple sites'),(2,'2022-10-31 20:16:22',43,7,'Unspecified site of spinal cord injury without evidence of spinal bone injury'),(3,'2022-09-26 07:30:20',23,1,'Infection by Histoplasma capsulatum, retinitis'),(4,'2022-10-27 05:54:58',29,5,'T7-T12 level with complete lesion of spinal cord'),(5,'2022-09-24 19:22:45',23,5,'Accidental cut, puncture, perforation or hemorrhage during injection or vaccination'),(6,'2022-11-12 16:30:27',46,10,'Syringomyelia and syringobulbia'),(7,'2022-10-29 07:24:20',81,4,'Pain in or around eye'),(8,'2022-11-07 03:54:23',62,7,'Alcohol abuse, unspecified'),(9,'2022-10-12 19:57:30',29,10,'Better eye: moderate vision impairment; lesser eye: moderate vision impairment'),(10,'2022-10-08 11:11:31',16,6,'Open fracture of eight or more ribs'),(11,'2022-10-05 07:26:43',19,1,'Disseminated malignant neoplasm without specification of site'),(12,'2022-11-13 06:23:38',42,2,'Personal history of other leukemia'),(13,'2022-10-01 13:11:10',60,10,'Blisters, epidermal loss [second degree] of multiple sites of upper limb, except wrist and hand'),(14,'2022-09-28 19:53:29',12,7,'Cortex (cerebral) laceration without mention of open intracranial wound, with concussion, unspecified'),(15,'2022-10-31 06:19:23',93,7,'Neuroma of amputation stump'),(16,'2022-10-08 17:38:13',18,5,'Poisoning by antimalarials and drugs acting on other blood protozoa'),(17,'2022-10-22 16:42:36',34,5,'Closed dislocation of interphalangeal (joint), hand'),(18,'2022-10-29 16:42:51',58,4,'Burn of unspecified degree of abdominal wall'),(19,'2022-10-17 00:01:11',24,4,'Other specified tularemia'),(20,'2022-09-26 15:06:20',23,3,'Osteoarthrosis, localized, secondary, lower leg');
 /*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-23  1:32:04
+-- Dump completed on 2022-09-23 21:41:37
